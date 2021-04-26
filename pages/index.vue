@@ -18,6 +18,11 @@
 import {mapState} from 'vuex';
 
 export default {
+  head() {
+    return {
+      title: "Home Page"
+    }
+  },
   data: function() {
     return {
       content: ''

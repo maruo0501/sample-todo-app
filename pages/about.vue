@@ -4,3 +4,15 @@
     <!-- <nuxt-link to="/">Home Page</nuxt-link> -->
   </main>
 </template>
+<script>
+export default {
+  head() {
+    return {
+      title: "About Page",
+      meta: [
+        {hid: 'descrition', name: "descrition", content: "これはAboutページです"}
+      ]
+    }
+  },
+}
+</script>

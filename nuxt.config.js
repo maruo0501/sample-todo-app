@@ -2,8 +2,9 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'sample-todo-app',
+    titleTemplate: '%s | sample-todo-app',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
