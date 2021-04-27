@@ -2,6 +2,11 @@
 export const state = () => ({
   count: 0
 })
+export const getters = {
+  getCount: (state) => {
+    return state.count
+  },
+}
 
 // 状態を変更する処理は mutationとしてexportする
 export const mutations = {

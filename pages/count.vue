@@ -9,7 +9,7 @@
 export default {
   computed: {
     count() {
-      return this.$store.state.count.count
+      return this.$store.getters['count/getCount']
     }
   },
   methods: {
