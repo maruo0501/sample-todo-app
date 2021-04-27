@@ -1,27 +1,27 @@
 <template>
-  <h1>ユーザID:{{user.name}}</h1>
+  <div>
+    <h1>ユーザー個別</h1>
+    <h2>{{user.username}}</h2>
+    <h3>{{user.email}}</h3>
+  </div>
 </template>
 <script>
+// import axios from 'axios';
+
 export default {
-  head() {
-    return {
-      title: this.user.name,
-    }
-  },
-  data() {
-    return {
-      id: this.$route.params.id,
-      users: [
-        {id: 1, name: "Taro"},
-        {id: 2, name: "Hana"},
-        {id: 3, name: "Kota"}
-      ]
-    }
-  },
-  computed: {
-    user() {
-      return this.users.find(user => user.id == this.id);
-    }
+  async asyncData(context) {
+    const user = await context.$axios.$get('https://jsonplaceholder.typicode.com/users/' + context.params.id)
+    return {user: user}
   }
+
+  // data() {
+  //   return {
+  //     user: {}
+  //   }
+  // },
+  // mounted() {
+  //   axios.get('https://jsonplaceholder.typicode.com/users/' + this.$route.params.id)
+  //     .then(response => this.user = response.data)
+  // }
 }
 </script>
