@@ -1,34 +1,62 @@
 <template>
-  <ul>
-    <li v-for="todo in todos" :key="todo.text">
-      <input :checked="todo.done" @change="toggle(todo)" type="checkbox">
-      <span :class="{ done: todo.done }">{{ todo.text }}</span>
-    </li>
-    <li><input @keyup.enter="addTodo" placeholder="What needs to be done?"></li>
-  </ul>
+  <section class="container">
+    <h1>Todoリスト</h1>
+    <div class="addArea">
+      <input type="text" name="addName" v-model="text" placeholder="タスクを入力してください">
+      <button id="addButton" v-on:click="add" class="button button--green">追加</button>
+      <button id="findButton" v-on:click="find" class="button button--green">検索</button>
+    </div>
+    <li v-for="todo in display_todos" v-bind:key=todo.id> 
+      {{todo.text.text}}
+      <button v-on:click="remove(todo)">削除</button> 
+    </li> 
+  </section>
 </template>
 <script>
-import { mapMutations } from 'vuex'
-
 export default {
+  data() {
+    return {
+      find_flg: false
+    }
+  },
   computed: {
-    todos () {
-      return this.$store.state.todos.list
+    todos() {
+      return this.$store.state.todos.todos
+    },
+    display_todos: function() {
+      if (this.find_flg) {
+        let arr = [];
+        let data = this.todos;
+        data.forEach(element => {
+          if(element.text == this.text) {
+            arr.push(element);
+          }
+        });
+        return arr;
+      } else {
+        return this.todos;
+      }
     }
   },
   methods: {
-    addTodo (e) {
-      this.$store.commit('todos/add', e.target.value)
-      e.target.value = ''
+    add() {
+      if (this.text != "") {
+        this.$store.commit('todos/add', {text: this.text});
+        this.text = ""
+      }
     },
-    ...mapMutations({
-      toggle: 'todos/toggle'
-    })
+    remove(todo) {
+      this.$store.commit('todos/remove', todo)
+    },
+    find() {
+      this.find_flg = true;
+    },
+    set_flg() {
+      if(this.find_flg) {
+        this.find_flg = false;
+        this.text = '';
+      }
+    },
   }
 }
 </script>
-<style>
-.done {
-  text-decoration: line-through;
-}
-</style>
