@@ -5,13 +5,12 @@
       <input type="text" name="addName" v-model="text" @focus="set_flg" placeholder="タスクを入力してください">
       <button id="addButton" v-on:click="add" class="button button--green">追加</button>
       <button id="findButton" v-on:click="find" class="button button--green">検索</button>
-      <!-- <button v-bind:disabled="isButtonDisabled" v-on:click="button_disabled()">ボタン</button> -->
+      <button v-bind:disabled="isButtonDisabled" v-on:click="button_disabled()">ボタン</button>
     </div>
     <li v-for="todo in display_todos" v-bind:key=todo.id> 
       {{todo.text.text}}
       <button v-on:click="remove(todo)">削除</button> 
     </li>
-    <button v-bind:disabled="isButtonDisabled" v-on:click="button_disabled()">ボタン</button>
   </section>
 </template>
 <script>
