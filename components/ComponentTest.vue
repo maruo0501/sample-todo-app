@@ -6,6 +6,11 @@
 <script>
 export default {
   // プロパティ定義
-  props: ["message"]
+  props: {
+    message: {
+      type: String,
+      default: "こんにちは"
+    }
+  }
 }
 </script>
