@@ -1,34 +1,19 @@
 <template>
-  <section class="container">
-    <h1>Todo App</h1>
-    <p><input type="text" name="content"/></p>
-    <div>
-      <button>save</button>
-      <button>find</button>
-    </div>
-    <ul>
-      <li v-for="(todo, index) in todos" :key="index">
-        <span>{{ todo.content }}</span><span>({{ todo.created }})</span><span>×</span>
-      </li>
-    </ul>
-  </section>
+  <div class="page">
+    <component v-bind:message="myMessage"></component>
+  </div>
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import Component from '@/components/Component.vue';
 export default {
-  head() {
+  data() {
     return {
-      title: "Home Page"
+      myMessage: "Hello"
     }
   },
-  data: function() {
-    return {
-      content: ''
-    }
+  components: {
+    Component: Component,
   },
-  computed: {
-    ...mapState(['todos'])
-  }
 }
 </script>
