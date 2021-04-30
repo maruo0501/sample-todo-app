@@ -1,19 +1,19 @@
 <template>
   <div class="page">
-    <component v-bind:message="myMessage"></component>
+    <ComponentTest v-bind:message="myMessage"></ComponentTest>
   </div>
 </template>
 
 <script>
-import Component from '@/components/Component.vue';
+import ComponentTest from '@/components/ComponentTest';
 export default {
   data() {
     return {
-      myMessage: "Hello"
+      myMessage: "Hello, Component!!"
     }
   },
   components: {
-    Component: Component,
+    ComponentTest: ComponentTest,
   },
 }
 </script>
